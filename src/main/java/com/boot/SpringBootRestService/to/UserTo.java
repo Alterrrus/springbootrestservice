@@ -2,6 +2,7 @@ package com.boot.SpringBootRestService.to;
 
 
 import com.boot.SpringBootRestService.HasIdAndEmail;
+import com.boot.SpringBootRestService.View;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.Email;
@@ -16,13 +17,13 @@ public class UserTo extends BaseTo implements HasIdAndEmail, Serializable {
 
     @NotBlank
     @Size(min = 2, max = 100)
-    @SafeHtml(whitelistType = NONE)
+    @SafeHtml(whitelistType = NONE,groups = {View.Web.class})
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    @SafeHtml(whitelistType = NONE) // https://stackoverflow.com/questions/17480809
+    @SafeHtml(whitelistType = NONE,groups = {View.Web.class}) // https://stackoverflow.com/questions/17480809
     private String email;
 
     @NotBlank

@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rest/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/rest/user/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantController {
 
     private final DishService dishService;
@@ -32,7 +32,7 @@ public class RestaurantController {
     public ResponseEntity<Vote> addVote(@PathVariable int restaurantId) {
          Vote created=voteService.save(restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/rest/restaurants/" + restaurantId + "/votes" + "/{id}")
+                .path("/rest/user/restaurants/" + restaurantId + "/votes" + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
 

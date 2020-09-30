@@ -24,7 +24,7 @@ import static com.boot.SpringBootRestService.util.ValidationUtil.checkNew;
 
 
 @RestController
-@RequestMapping("/rest/profile")
+@RequestMapping("/rest")
 public class ProfileRestController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
     private final UserService service;
@@ -33,12 +33,12 @@ public class ProfileRestController {
         this.service = service;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,value = "/user/profile")
     public User get(@AuthenticationPrincipal AuthorizedUser authUser) {
         return service.get(authUser.getId());
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/user/profile")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@AuthenticationPrincipal AuthorizedUser authUser) {
         service.delete(authUser.getId());
@@ -59,11 +59,11 @@ public class ProfileRestController {
     public ResponseEntity<User> register(@Valid @RequestBody UserTo userTo) {
         User created = create(userTo);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/rest/profile").build().toUri();
+                .path("/rest/user/profile").build().toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/user/profile")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authUser) {
         assureIdConsistent(userTo, authUser.getId());

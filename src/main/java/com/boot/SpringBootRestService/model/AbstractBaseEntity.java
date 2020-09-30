@@ -10,7 +10,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity implements HasId {
-    public static final int START_SEQ = 10000;
+    public static final int START_SEQ = 10030;
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
    // @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
