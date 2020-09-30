@@ -1,0 +1,147 @@
+### curl  http://localhost:8080/restaurant/rest/admin/users --user admin@gmail.com:admin
+#### get All Users(Admin)
+GET http://localhost:8080/restaurant/rest/admin/users
+Authorization: Basic admin@gmail.com admin
+
+###
+
+### curl  http://localhost:8080/restaurant/rest/admin/users/10001 --user admin@gmail.com:admin
+#### get Users 100001 (Admin)
+GET http://localhost:8080/restaurant/rest/admin/users/10001
+Authorization: Basic admin@gmail.com admin
+
+###
+
+### curl  -i -X POST -d '{"name":"New User","email":"test@mail.ru","password":"test-password"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/profile/register
+#### register Users(Anonymous)
+POST http://localhost:8080/rest/register
+Content-Type: application/json;charset=UTF-8
+
+{"name":"<script>alert('</script>","email":"test@mail.ru","password":"testpassword"}
+
+###
+
+### curl  http://localhost:8080/restaurant/rest/profile --user test@mail.ru:test-password
+#### get Profile(User)
+GET http://localhost:8080/restaurant/rest/profile
+Authorization: Basic test@mail.ru test-password
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants --user admin@gmail.com:admin
+###AdminGetAllRestaurantWithDishAndVote(Admin)
+GET http://localhost:8080/restaurant/rest/admin/restaurants
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+###
+
+### curl  -i -X POST -d '{"name":"New Restaurant"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants --user admin@gmail.com:admin
+###addRestaurant(Admin)
+POST http://localhost:8080/restaurant/rest/admin/restaurants
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+{"name":"New Restaurant"}
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes --user admin@gmail.com:admin
+###getRestaurantDishes(Admin)
+GET http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+###
+
+### curl  -i -X POST -d '{"name":"New SoupCreate","price":"1000"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes --user admin@gmail.com:admin
+###addRestaurantDishes(Admin)
+POST http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+{"name":"New","price":"0.1"}
+
+###
+
+### curl  -i -X PUT -d '{"id":"10010","name":"Update Soupupdate","price":"1000"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10010 --user admin@gmail.com:admin
+###updateDishes(Admin)
+PUT http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10010
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+{"id":"10010","name":"Update Soupupdate","price":"1000"}
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10010 --user admin@gmail.com:admin
+###getRestaurantDish(Admin)
+GET http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10010
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+###
+
+### curl  -X DELETE http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10009 --user admin@gmail.com:admin
+###DeleteRestaurantDish(Admin)
+DELETE http://localhost:8080/restaurant/rest/admin/restaurants/10002/dishes/10009
+Authorization: Basic admin@gmail.com admin
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002 --user admin@gmail.com:admin
+###getRestaurant(Admin)
+GET http://localhost:8080/restaurant/rest/admin/restaurants/10002
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+###
+
+### curl  -i -X PUT -d '{"id":"10002","name":"newЛасточка"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10002 --user admin@gmail.com:admin
+###updateRestaurant(Admin)
+PUT http://localhost:8080/restaurant/rest/admin/restaurants/10002
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+{"id":"10002","name":"newЛасточка"}
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/admin/restaurants/10003/votes --user admin@gmail.com:admin
+###getRestaurantVote(Admin)
+GET http://localhost:8080/restaurant/rest/admin/restaurants/10003/votes
+Authorization: Basic admin@gmail.com admin
+Content-Type: application/json;charset=UTF-8
+
+###
+
+### curl  -X DELETE http://localhost:8080/restaurant/rest/admin/users/10017 --user admin@gmail.com:admin
+###deleteUser (Admin)
+DELETE http://localhost:8080/restaurant/rest/admin/users/10017
+Authorization: Basic admin@gmail.com admin
+
+###
+
+### curl  -i -X PUT http://localhost:8080/restaurant/rest/restaurants/10002/votes --user user@gmail.com:user
+###addVote(User)
+PUT http://localhost:8080/restaurant/rest/restaurants/10003/votes
+Authorization: Basic user@gmail.com user
+
+###
+
+### curl  -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurant/rest/restaurants/10002/votes --user user@gmail.com:user
+###getAllRestaurantVotes(User)
+GET http://localhost:8080/restaurant/rest/restaurants/10003/votes
+Authorization: Basic user@gmail.com user
+Content-Type: application/json;charset=UTF-8
+
+###
+
+
+
+
+
+
+
+
+
