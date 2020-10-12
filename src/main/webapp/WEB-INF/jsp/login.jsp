@@ -10,7 +10,7 @@
 
 <body>
 <sec:authorize access="isAuthenticated()">
-    <% response.sendRedirect("/rest/restaurants"); %>
+    <% response.sendRedirect("/rest/user/restaurants"); %>
 </sec:authorize>
 <div>
     <form method="POST" action="/login">
@@ -20,7 +20,7 @@
                    autofocus="true"/>
             <input name="password" type="password" placeholder="Password"/>
             <button type="submit">Log In</button>
-            <h4><a href="/registered">Зарегистрироваться</a></h4>
+            <h4><a href="${pageContext.request.contextPath}/rest/profile/register">Зарегистрироваться</a></h4>
         </div>
     </form>
 </div>

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -54,7 +55,7 @@ public class ProfileRestController {
         return service.create(user);
     }
 
-    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/profile/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<User> register(@Valid @RequestBody UserTo userTo) {
         User created = create(userTo);
@@ -62,6 +63,8 @@ public class ProfileRestController {
                 .path("/rest/user/profile").build().toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
+
+
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/user/profile")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -14,8 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    @Autowired
-    UserService userService;
+    final    UserService userService;
+
+    public WebSecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -28,8 +32,11 @@ public class WebSecurityConfig {
     @Configuration
     @Order(1)
     public static class WebSecurityConfigAdmin extends WebSecurityConfigurerAdapter {
-        @Autowired
-        private AuthenticationEntryPointImpl entryPoint;
+        private final AuthenticationEntryPointImpl entryPoint;
+
+        public WebSecurityConfigAdmin(AuthenticationEntryPointImpl entryPoint) {
+            this.entryPoint = entryPoint;
+        }
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
@@ -42,14 +49,17 @@ public class WebSecurityConfig {
     @Configuration
     @Order(2)
     public static class WebSecurityConfigUser extends WebSecurityConfigurerAdapter {
-        @Autowired
-        private AuthenticationEntryPointImplUser entryPoint;
+        private final AuthenticationEntryPointImplUser entryPoint;
+
+        public WebSecurityConfigUser(AuthenticationEntryPointImplUser entryPoint) {
+            this.entryPoint = entryPoint;
+        }
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable();
             http.antMatcher("/rest/user/**")
-                    .authorizeRequests().anyRequest().hasRole("USER")
+                    .authorizeRequests().anyRequest().hasAnyRole("USER","ADMIN")
                     .and().httpBasic().authenticationEntryPoint(entryPoint);
         }
     }
